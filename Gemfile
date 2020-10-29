@@ -16,7 +16,7 @@ gem 'puma', '~> 4.1'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'ruby', '-> 2.6.5'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -65,6 +65,7 @@ end
 group :production do
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'database_cleaner-active_record', '~> 1.8'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
