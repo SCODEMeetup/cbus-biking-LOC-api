@@ -27,7 +27,7 @@ RSpec.configure do |config|
           url: 'http://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'localhost:4000'
+              default: 'https://ride-aware.herokuapp.com/'
             }
           }
         }
