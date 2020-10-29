@@ -60,5 +60,7 @@ test:
 production:
   <<: *default
   database: cbus_biking_loc_production
-  username: cbus_biking_loc
-  password: <%= ENV['BIKE_SAFETY_API_DATABASE_PASSWORD'] %>
+  # username: cbus_biking_loc
+  # password: <%= ENV['BIKE_SAFETY_API_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: postgres
