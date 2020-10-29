@@ -1,0 +1,285 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/incident_severities":
+    post:
+      summary: create incident_severity
+      tags:
+      - Incident Severities
+      parameters: []
+      responses:
+        '201':
+          description: incident severity created
+          content: {}
+        '422':
+          description: unprocessable entity
+          content: {}
+        '400':
+          description: bad request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+              required:
+              - description
+    get:
+      summary: list incident severities
+      tags:
+      - Incident Severities
+      responses:
+        '200':
+          description: successful
+          content: {}
+  "/api/incident_severities/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show incident severity
+      tags:
+      - Incident Severities
+      responses:
+        '200':
+          description: successful
+          content: {}
+        '404':
+          description: not found
+          content: {}
+    delete:
+      summary: delete incident severity
+      tags:
+      - Incident Severities
+      responses:
+        '204':
+          description: no content
+          content: {}
+        '404':
+          description: not found
+          content: {}
+        '409':
+          description: conflict
+          content: {}
+    put:
+      summary: update incident_severity
+      tags:
+      - Incident Severities
+      parameters: []
+      responses:
+        '204':
+          description: successful
+          content: {}
+        '422':
+          description: unprocessable entity
+          content: {}
+        '400':
+          description: bad request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+              required:
+              - description
+  "/api/incident_types":
+    post:
+      summary: create incident_type
+      tags:
+      - Incident Types
+      parameters: []
+      responses:
+        '201':
+          description: incident type created
+          content: {}
+        '422':
+          description: unprocessable entity
+          content: {}
+        '400':
+          description: bad request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+              required:
+              - description
+    get:
+      summary: list incident types
+      tags:
+      - Incident Types
+      responses:
+        '200':
+          description: successful
+          content: {}
+  "/api/incident_types/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show incident type
+      tags:
+      - Incident Types
+      responses:
+        '200':
+          description: successful
+          content: {}
+        '404':
+          description: not found
+          content: {}
+    delete:
+      summary: delete incident type
+      tags:
+      - Incident Types
+      responses:
+        '204':
+          description: no content
+          content: {}
+        '404':
+          description: not found
+          content: {}
+        '409':
+          description: conflict
+          content: {}
+    put:
+      summary: update incident_type
+      tags:
+      - Incident Types
+      parameters: []
+      responses:
+        '204':
+          description: successful
+          content: {}
+        '422':
+          description: unprocessable entity
+          content: {}
+        '400':
+          description: bad request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+              required:
+              - description
+  "/api/reports":
+    post:
+      summary: create report
+      tags:
+      - Reports
+      parameters: []
+      responses:
+        '201':
+          description: report created
+          content: {}
+        '422':
+          description: unprocessable entity
+          content: {}
+        '400':
+          description: bad request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lat:
+                  type: number
+                  format: float
+                  minimum: "-90.0"
+                  maximum: '90.0'
+                long:
+                  type: number
+                  format: float
+                  minimum: "-180.0"
+                  maximum: '180.0'
+                incident_datetime:
+                  type: string
+                  format: date-time
+                incident_text:
+                  type: string
+                  maximum: 64000
+                incident_type_id:
+                  type: integer
+                  minimum: 1
+                  maximum: 4
+                incident_severity_id:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+              required:
+              - lat
+              - long
+              - incident_datetime
+              - incident_type_id
+              - incident_severity_id
+    get:
+      summary: list reports
+      tags:
+      - Reports
+      responses:
+        '200':
+          description: successful
+          content: {}
+  "/api/reports/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show report
+      tags:
+      - Reports
+      responses:
+        '200':
+          description: successful
+          content: {}
+        '404':
+          description: not found
+          content: {}
+    delete:
+      summary: delete report
+      tags:
+      - Reports
+      responses:
+        '204':
+          description: no content
+          content: {}
+        '404':
+          description: not found
+          content: {}
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:4000
