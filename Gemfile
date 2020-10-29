@@ -61,5 +61,10 @@ group :test do
   # gem 'simplecov-cobertura', '~> 1.3', require: false
 end
 
+group :production do
+  gem 'rspec'
+  gem 'rspec-rails'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
