@@ -24,10 +24,10 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: Rails.application.config.rswag_url_prefix + '{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'ride-aware.herokuapp.com/'
+              default: Rails.application.config.rswag_host
             }
           }
         }
