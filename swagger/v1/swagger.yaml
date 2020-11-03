@@ -279,7 +279,7 @@ paths:
           description: not found
           content: {}
 servers:
-- url: http://{defaultHost}
+- url: https://{defaultHost}
   variables:
     defaultHost:
-      default: localhost:4000
+      default: https://ride-aware.herokuapp.com
