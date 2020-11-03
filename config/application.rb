@@ -14,8 +14,8 @@ require 'action_mailbox/engine'
 require 'action_text/engine'
 require 'action_view/railtie'
 require 'action_cable/engine'
-# require "sprockets/railtie"
 require 'rails/test_unit/railtie'
+require 'sprockets/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -36,5 +36,11 @@ module BikeSafetyApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.autoload_paths += %W(#{config.root}/lib)
+
+    # config.rswag_host = "localhost:4000"
+    # config.rswag_url_prefix = "http://"
+
+    config.rswag_host = ENV['RSWAG_HOST'] || "localhost:4000"
+    config.rswag_url_prefix = ENV['RSWAG_URL_PREFIX'] || "http://"
   end
 end

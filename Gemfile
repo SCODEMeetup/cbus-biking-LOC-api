@@ -3,6 +3,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'database_cleaner-active_record', '~> 1.8'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 # Use mysql as the database for Active Record
@@ -17,7 +19,6 @@ gem 'puma', '~> 4.1'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -30,6 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'active_model_serializers'
 
+gem 'rspec'
+gem 'rspec-rails'
 gem 'rswag'
 
 group :development, :test do
@@ -53,19 +56,11 @@ group :test do
   # rspec test group only or we get the
   #   "irb: warn: can't alias context from irb_context warning"
   #   when starting jets console
-  gem 'database_cleaner-active_record', '~> 1.8'
+
   gem 'factory_bot_rails'
   gem 'faker', '~> 2.11'
-  gem 'rspec'
-  gem 'rspec-rails'
   gem 'simplecov', '~> 0.18.5', require: false
   # gem 'simplecov-cobertura', '~> 1.3', require: false
-end
-
-group :production do
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'database_cleaner-active_record', '~> 1.8'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
