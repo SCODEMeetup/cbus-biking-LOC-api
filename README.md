@@ -18,7 +18,7 @@ password: postgres
 
 ## API application Initialization
 
-After cloning the repo, navigate to /cbus-biking-LOC/api and enter:
+After cloning the repo, navigate to /cbus-biking-LOC-api and enter:
 
 <pre> bundle install </pre>
 
@@ -30,19 +30,19 @@ After cloning the repo, navigate to /cbus-biking-LOC/api and enter:
 
    <pre>rake db:create</pre>
 
-   This creates the database from /cbus-biking-LOC/api/config/database.yml
+   This creates the database from /cbus-biking-LOC-api/config/database.yml
 
 3. To create the reports table in your development database enter:
 
    <pre>rake db:schema:load</pre>
 
-   This loads the schema from /cbus-biking-LOC/api/db/schema.rb
+   This loads the schema from /cbus-biking-LOC-api/db/schema.rb
 
 4. To seed the reports table with some sample data enter:
 
    <pre>rake db:seed</pre>
 
-   This loads seed data from /cbus-biking-LOC/api/db/seeds.rb
+   This loads seed data from /cbus-biking-LOC-api/db/seeds.rb
 
 5. To run db:create, db:schema:load, and db:seed with one command enter:
 
