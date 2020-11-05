@@ -10,7 +10,11 @@ Built an deployed using the Ruby on Rails framework.
 2. [Bundler](https://bundler.io/)
 3. [PostgreSQL 13.0.x](https://www.postgresql.org/download/)
 
-Note: The api connects to the local development PostgreSLQ server using the root user id and no password.
+Note: The api connects to the local development PostgreSLQ server using these credentials:
+<pre>
+username: postgres 
+password: postgres
+</pre>
 
 ## API application Initialization
 
@@ -46,11 +50,9 @@ After cloning the repo, navigate to /cbus-biking-LOC/api and enter:
 
 ## Start the API application server
 
-<pre>rails s</pre>
+<pre>rails s -p 4000</pre>
 
-This will start the application server on your localhost at port 4000. When running the ui, you may need to run on a different port:
-
-<pre>rails s -p {port}</pre>
+This will start the application server on your localhost at port 4000. If choosing to run the server at a different port also use that port for the Swagger UI.  See the Swagger API documentation section below for details.
 
 ## Database deletion and reset
 
@@ -68,22 +70,24 @@ Swagger documentation for all API endpoints is made available through the [rswag
 
 The generated documentation (Swagger UI) is available at http://localhost:4000/api-docs/index.html after the cloning and initialization steps.  To use a different host or port than the default:
 
-1. Locate and modify the default host in the spec/swagger_helper.rb file as shown below:
+1. The Swagger UI host information is accessed by the config/application file through Environment variables.
 
-<pre>
-variables: {
-            defaultHost: {
-              default: 'localhost:5000'
-            }
-</pre>
+    ```
+    config.rswag_host = ENV['RSWAG_HOST'] || "localhost:4000"
+    config.rswag_url_prefix = ENV['RSWAG_URL_PREFIX'] || "http://"
+    ```
+   To change the swagger UI port, set the RSWAG_HOST Environment variable:
+   
+   <pre>
+   export RSWAG_HOST=localhost:{your port}
+   </pre>
 
-2. To generate the modified swagger.yaml file which is used to create the docs HTML enter:
+2. Generate the modified swagger.yaml file which is used to create the docs HTML enter:
 
    <pre>rails rswag</pre>
 
 3. Restart rails server:
 
-   <pre>rails s</pre> or 
    <pre>rails s -p {port}</pre>
 
    In addition to the Swagger documentation, there is written documentation below.
@@ -233,6 +237,7 @@ Deleting an incident_type or incident_severity that a report resource is depende
 Status Codes:
 
 204 No Content, 404 Record Not Found, 409 Conflict
+
 
 
    

@@ -37,9 +37,6 @@ module BikeSafetyApi
     config.api_only = true
     config.autoload_paths += %W(#{config.root}/lib)
 
-    # config.rswag_host = "localhost:4000"
-    # config.rswag_url_prefix = "http://"
-
     config.rswag_host = ENV['RSWAG_HOST'] || "localhost:4000"
     config.rswag_url_prefix = ENV['RSWAG_URL_PREFIX'] || "http://"
   end
