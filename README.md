@@ -11,10 +11,9 @@ Built an deployed using the Ruby on Rails framework.
 3. [PostgreSQL 13.0.x](https://www.postgresql.org/download/)
 
 Note: The api connects to the local development PostgreSLQ server using these credentials:
-<pre>
-username: postgres 
-password: postgres
-</pre>
+
+<pre>username: postgres</pre> 
+<pre>password: postgres</pre>
 
 ## API application Initialization
 
