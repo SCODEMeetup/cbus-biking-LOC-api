@@ -92,4 +92,3 @@ jobs:
         run: |
           bundle exec rubocop
         working-directory: ${{env.working-directory}}
-        
