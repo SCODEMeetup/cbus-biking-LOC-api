@@ -10,8 +10,6 @@ jobs:
   test:
     name: Run Unit Tests
     runs-on: ubuntu-latest
-    env:
-      working-directory: api
 
     services:
       postgres:
