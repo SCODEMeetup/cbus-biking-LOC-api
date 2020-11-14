@@ -1,8 +1,8 @@
 # Cbus Biking Locations API
 
-API that exposes reports from cyclists including location and incident information
+API that exposes reports from cyclists including location and incident information.
 
-Built an deployed using the Ruby on Rails framework.
+Built and deployed using the Ruby on Rails framework.
 
 ## Prerequisites
 
@@ -12,8 +12,10 @@ Built an deployed using the Ruby on Rails framework.
 
 Note: The api connects to the local development PostgreSLQ server using these credentials:
 
-<pre>username: postgres</pre> 
-<pre>password: postgres</pre>
+```
+username: postgres
+password: postgres
+```
 
 ## API application Initialization
 
@@ -187,7 +189,7 @@ a response of [] indicates and empty list.
 
 Status Codes:
 
-204 No Content, 404 Record Not Found
+<pre>204 No Content, 404 Record Not Found</pre>
 
 ## Using the incident_types and incident_severities endpoints
 
@@ -208,7 +210,7 @@ required params(description:string)
 
 Status Codes:
 
-204 No Content, 400 Bad Request, 422 Unprocessible Entity
+<pre>204 No Content, 400 Bad Request, 422 Unprocessible Entity</pre>
 
 A 422 will include one or more validation error messages in the response body.  Currently only applies to desctiption:
 <pre>
@@ -221,21 +223,23 @@ A 422 will include one or more validation error messages in the response body.  
 
 2. DELETE an incident_type or incident_severity
 
-Deleting an incident_type or incident_severity that a report resource is dependent on will return an error.  For example:
+   Deleting an incident_type or incident_severity that a report resource is dependent on will return an error.  For example:
 
    http://localhost:3000/api/incident_severities/2
 
-   where an existing report has an incident_severity_type of 2 will return the following response body:
+   An existing report with an incident_severity_type_id of 2 will return the following response body:
 
+<pre>
    {
       "status": 409,
       "error": "conflict",
       "message": "Cannot delete record because of dependent reports"
    }
+</pre>
 
 Status Codes:
 
-204 No Content, 404 Record Not Found, 409 Conflict
+<pre>204 No Content, 404 Record Not Found, 409 Conflict</pre>
 
 
 
