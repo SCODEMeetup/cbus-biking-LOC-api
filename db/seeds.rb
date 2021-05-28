@@ -27,7 +27,7 @@ Report.create([{ lat: 39.98460665, long: -82.91922267, incident_datetime: '2020-
                  incident_text: 'lorem ipsum 3 ...',incident_type_id: 3, incident_severity_id: 3 },
                { lat: 39.920211, long: -82.832104, incident_datetime: '2020-09-30T19:23:15.841Z',
                  incident_text: 'lorem ipsum 4 ...', incident_type_id: 4, incident_severity_id: 4 },
-               { lat: 39.920211, long: -82.832104, incident_datetime: '2020-09-30',
+               { lat: 39.921211, long: -82.842104, incident_datetime: '2020-09-30',
                  incident_text: 'lorem ipsum 5 ...', incident_type_id: 4, incident_severity_id: 5 }])
 
 
