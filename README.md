@@ -49,6 +49,11 @@ After cloning the repo, navigate to /cbus-biking-LOC-api and enter:
 
    <pre>rake db:setup</pre>
 
+6. To run the linter and unit tests enter:
+
+   <pre>bundle exec rubocop</pre>
+   <pre>bundle exec rspec</pre>
+
 ## Start the API application server
 
 <pre>rails s -p 4000</pre>

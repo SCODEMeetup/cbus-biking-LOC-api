@@ -1,0 +1,50 @@
+_HiStOrY_V2_
+\134h
+uir\^Aquit
+\134q
+select\040*\040from\040widgets\^Aselect\040*\040from\040widgets;
+select\040*\040from\040widgets;
+select version();
+pwd
+bundle exec rubocop
+exit
+\q
+CREATE ROLE
+\q
+CREATE USER root
+exit
+\q
+\du
+\q
+tables
+select * from reports
+run
+help
+\?
+\d[S+]
+\show
+\d
+\t
+\d reports
+\d incidents
+q
+exit
+\q
+/d
+\d
+\D
+\?
+\d
+\q
+\d
+\q
+\d
+\d
+rake db:schema:load
+\q
+\d
+\q
+\d
+\t
+\s
+\s * from reports
