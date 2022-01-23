@@ -44,9 +44,7 @@ jobs:
           DB_HOST: localhost
           RAILS_ENV: test
         run: |
-          gem install bundler
           bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
           bundle exec rake db:create db:schema:load
         working-directory: ${{env.working-directory}}
       - name: Run Tests
@@ -80,9 +78,7 @@ jobs:
             ${{ runner.os }}-bundler-
       - name: Setup
         run: |
-          gem install bundler
           bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
         working-directory: ${{env.working-directory}}
       - name: Lint
         run: |
