@@ -29,9 +29,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5
+          bundler-cache: true
       - name: Cache Dependencies
         uses: actions/cache@v1
         with:
@@ -46,7 +46,6 @@ jobs:
         run: |
           gem install bundler
           bundle config path vendor/bundle
-          gem update --system 3.2.3
           bundle install --jobs 4 --retry 3
           bundle exec rake db:create db:schema:load
         working-directory: ${{env.working-directory}}
@@ -69,9 +68,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5
+          bundler-cache: true
       - name: Cache Dependencies
         uses: actions/cache@v1
         with:
