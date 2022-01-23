@@ -27,7 +27,7 @@ default: &default
 development:
   <<: *default
   database: cbus_biking_loc_development
-  host: localhost
+  host: my-postgres-server.cxjqgcqw5mvn.us-east-1.rds.amazonaws.com 
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
@@ -36,7 +36,8 @@ development:
 test:
   <<: *default
   database: cbus_biking_loc_test
-  host: 127.0.0.1
+  host: my-postgres-server.cxjqgcqw5mvn.us-east-1.rds.amazonaws.com 
+  port: 5432
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -62,5 +63,7 @@ production:
   database: cbus_biking_loc_production
   # username: cbus_biking_loc
   # password: <%= ENV['BIKE_SAFETY_API_DATABASE_PASSWORD'] %>
+  host: my-postgres-server.cxjqgcqw5mvn.us-east-1.rds.amazonaws.com 
   username: postgres
   password: postgres
+  port: 5432

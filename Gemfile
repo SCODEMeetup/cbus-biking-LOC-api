@@ -32,7 +32,7 @@ gem 'rack-cors'
 gem 'active_model_serializers'
 
 gem 'rspec'
-gem 'rspec-rails'
+gem 'rspec-rails', '~> 5.0.2'
 gem 'rswag'
 
 group :development, :test do
