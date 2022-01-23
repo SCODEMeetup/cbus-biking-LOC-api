@@ -51,7 +51,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '3.35.0'
   gem 'launchy'
   # rspec test group only or we get the
   #   "irb: warn: can't alias context from irb_context warning"
