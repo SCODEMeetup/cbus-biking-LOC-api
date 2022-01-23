@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # get 'welcome/index'
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -9,4 +10,5 @@ Rails.application.routes.draw do
     resources :incident_types, only: %i[index show create destroy update]
     resources :incident_severities
   end
+  root 'welcome#index'
 end

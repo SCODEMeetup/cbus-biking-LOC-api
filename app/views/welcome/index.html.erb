@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    Welcome to the ride-aware API
+  </head>
+
+  <body>
+  <p> 
+    <%= 
+        if Rails.env == 'development'
+          link_to "API Swagger Documentation", 'http://' + request.host + ':' + request.port.to_s + '/api-docs' 
+        elsif Rails.env == 'production'
+          link_to "API Swagger Documentation", 'https://' + request.host + ':' + request.port.to_s + '/api-docs'
+        end 
+    %>
+  </p>
+  </body>
+</html>
