@@ -247,7 +247,7 @@ paths:
         '404':
           description: not found
 servers:
-- url: http://{defaultHost}
+- url: https://{defaultHost}
   variables:
     defaultHost:
-      default: localhost:4000
+      default: ride-aware.herokuapp.com
