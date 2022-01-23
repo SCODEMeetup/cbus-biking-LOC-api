@@ -13,13 +13,10 @@ paths:
       responses:
         '201':
           description: incident severity created
-          content: {}
         '422':
           description: unprocessable entity
-          content: {}
         '400':
           description: bad request
-          content: {}
       requestBody:
         content:
           application/json:
@@ -37,7 +34,6 @@ paths:
       responses:
         '200':
           description: successful
-          content: {}
   "/api/incident_severities/{id}":
     parameters:
     - name: id
@@ -53,10 +49,8 @@ paths:
       responses:
         '200':
           description: successful
-          content: {}
         '404':
           description: not found
-          content: {}
     delete:
       summary: delete incident severity
       tags:
@@ -64,13 +58,10 @@ paths:
       responses:
         '204':
           description: no content
-          content: {}
         '404':
           description: not found
-          content: {}
         '409':
           description: conflict
-          content: {}
     put:
       summary: update incident_severity
       tags:
@@ -79,13 +70,10 @@ paths:
       responses:
         '204':
           description: successful
-          content: {}
         '422':
           description: unprocessable entity
-          content: {}
         '400':
           description: bad request
-          content: {}
       requestBody:
         content:
           application/json:
@@ -105,13 +93,10 @@ paths:
       responses:
         '201':
           description: incident type created
-          content: {}
         '422':
           description: unprocessable entity
-          content: {}
         '400':
           description: bad request
-          content: {}
       requestBody:
         content:
           application/json:
@@ -129,7 +114,6 @@ paths:
       responses:
         '200':
           description: successful
-          content: {}
   "/api/incident_types/{id}":
     parameters:
     - name: id
@@ -145,10 +129,8 @@ paths:
       responses:
         '200':
           description: successful
-          content: {}
         '404':
           description: not found
-          content: {}
     delete:
       summary: delete incident type
       tags:
@@ -156,13 +138,10 @@ paths:
       responses:
         '204':
           description: no content
-          content: {}
         '404':
           description: not found
-          content: {}
         '409':
           description: conflict
-          content: {}
     put:
       summary: update incident_type
       tags:
@@ -171,13 +150,10 @@ paths:
       responses:
         '204':
           description: successful
-          content: {}
         '422':
           description: unprocessable entity
-          content: {}
         '400':
           description: bad request
-          content: {}
       requestBody:
         content:
           application/json:
@@ -197,13 +173,10 @@ paths:
       responses:
         '201':
           description: report created
-          content: {}
         '422':
           description: unprocessable entity
-          content: {}
         '400':
           description: bad request
-          content: {}
       requestBody:
         content:
           application/json:
@@ -247,7 +220,6 @@ paths:
       responses:
         '200':
           description: successful
-          content: {}
   "/api/reports/{id}":
     parameters:
     - name: id
@@ -263,10 +235,8 @@ paths:
       responses:
         '200':
           description: successful
-          content: {}
         '404':
           description: not found
-          content: {}
     delete:
       summary: delete report
       tags:
@@ -274,12 +244,10 @@ paths:
       responses:
         '204':
           description: no content
-          content: {}
         '404':
           description: not found
-          content: {}
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: ec2-18-233-156-231.compute-1.amazonaws.com/
+      default: localhost:4000
