@@ -2,23 +2,23 @@
 
 require 'swagger_helper'
 
-RSpec.describe 'api/incident_severities', type: :request do
-  let!(:incident_severity) { create(:incident_severity) }
-
-  let!(:incident_severity_other) { create(:incident_severity) }
-  let!(:incident_type) { create(:incident_type) }
+RSpec.describe 'api/incident_subjects', type: :request do
   let!(:incident_subject) { create(:incident_subject) }
+
+  let!(:incident_subject_other) { create(:incident_subject) }
+  let!(:incident_type) { create(:incident_type) }
+  let!(:incident_severity) { create(:incident_severity) }
   let!(:report) do
-    create(:report, incident_severity_id: incident_severity_other.id,
+    create(:report, incident_subject_id: incident_subject_other.id,
     incident_type_id: incident_type.id,
-    incident_subject_id: incident_subject.id)
+    incident_severity_id: incident_severity.id)
   end
 
-  path '/api/incident_severities' do
-    post('create incident_severity') do
-      tags 'Incident Severities'
+  path '/api/incident_subjects' do
+    post('create incident_subject') do
+      tags 'Incident Subjects'
       consumes 'application/json'
-      parameter name: :incident_severity, in: :body, schema: {
+      parameter name: :incident_subject, in: :body, schema: {
         type: :object,
         properties: {
           description: { type: :string }
@@ -26,8 +26,8 @@ RSpec.describe 'api/incident_severities', type: :request do
         required: ['description']
       }
 
-      response(201, 'incident severity created') do
-        let(:incident_severity) { { description: 'critical' } }
+      response(201, 'incident subject created') do
+        let(:incident_subject) { { description: 'critical' } }
 
         after do |example|
           example.metadata[:response][:examples] =
@@ -38,7 +38,7 @@ RSpec.describe 'api/incident_severities', type: :request do
       end
 
       response(422, 'unprocessable entity') do
-        let(:incident_severity) { { description: '' } }
+        let(:incident_subject) { { description: '' } }
 
         after do |example|
           example.metadata[:response][:examples] =
@@ -49,7 +49,7 @@ RSpec.describe 'api/incident_severities', type: :request do
       end
 
       response(400, 'bad request') do
-        let(:incident_severity) { {} }
+        let(:incident_subject) { {} }
 
         after do |example|
           example.metadata[:response][:examples] =
@@ -60,8 +60,8 @@ RSpec.describe 'api/incident_severities', type: :request do
       end
     end
 
-    get('list incident severities') do
-      tags 'Incident Severities'
+    get('list incident subjects') do
+      tags 'Incident Subjects'
       response(200, 'successful') do
         after do |example|
           example.metadata[:response][:examples] =
@@ -73,15 +73,15 @@ RSpec.describe 'api/incident_severities', type: :request do
     end
   end
 
-  path '/api/incident_severities/{id}' do
+  path '/api/incident_subjects/{id}' do
     # You'll want to customize the parameter severitys...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
-    get('show incident severity') do
-      tags 'Incident Severities'
+    get('show incident subject') do
+      tags 'Incident Subjects'
       response(200, 'successful') do
-        let(:incident_severity) { create(:incident_severity) }
-        let(:id) { incident_severity.id }
+        let(:incident_subject) { create(:incident_subject) }
+        let(:id) { incident_subject.id }
 
         after do |example|
           example.metadata[:response][:examples] =
@@ -103,10 +103,10 @@ RSpec.describe 'api/incident_severities', type: :request do
       end
     end
 
-    delete('delete incident severity') do
-      tags 'Incident Severities'
+    delete('delete incident subject') do
+      tags 'Incident Subjects'
       response(204, 'no content') do
-        let(:id) { incident_severity.id }
+        let(:id) { incident_subject.id }
 
         run_test!
       end
@@ -123,7 +123,7 @@ RSpec.describe 'api/incident_severities', type: :request do
       end
 
       response(409, 'conflict') do
-        let(:id) { incident_severity_other.id }
+        let(:id) { incident_subject_other.id }
 
         after do |example|
           example.metadata[:response][:examples] =
@@ -134,10 +134,10 @@ RSpec.describe 'api/incident_severities', type: :request do
       end
     end
 
-    put('update incident_severity') do
-      tags 'Incident Severities'
+    put('update incident_subject') do
+      tags 'Incident Subjects'
       consumes 'application/json'
-      parameter name: :incident_severity, in: :body, schema: {
+      parameter name: :incident_subject, in: :body, schema: {
         type: :object,
         properties: {
           description: { type: :string }
@@ -146,14 +146,14 @@ RSpec.describe 'api/incident_severities', type: :request do
       }
 
       response(204, 'successful') do
-        let(:id) { incident_severity_other.id }
+        let(:id) { incident_subject_other.id }
 
         run_test!
       end
 
       response(422, 'unprocessable entity') do
-        let(:incident_severity) { { description: '' } }
-        let(:id) { incident_severity_other.id }
+        let(:incident_subject) { { description: '' } }
+        let(:id) { incident_subject_other.id }
 
         after do |example|
           example.metadata[:response][:examples] =
@@ -164,8 +164,8 @@ RSpec.describe 'api/incident_severities', type: :request do
       end
 
       response(400, 'bad request') do
-        let(:incident_severity) { {} }
-        let(:id) { incident_severity_other.id }
+        let(:incident_subject) { {} }
+        let(:id) { incident_subject_other.id }
 
         after do |example|
           example.metadata[:response][:examples] =

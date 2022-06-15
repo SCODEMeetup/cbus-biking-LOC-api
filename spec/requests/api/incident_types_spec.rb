@@ -2,14 +2,16 @@
 
 require 'swagger_helper'
 
-RSpec.describe 'api/incident_types', type: :request do
+RSpec.describe 'api/incident_types_controller', type: :request do
   let!(:incident_type) { create(:incident_type) }
 
   let!(:incident_type_other) { create(:incident_type) }
   let!(:incident_severity) { create(:incident_severity) }
+  let!(:incident_subject) { create(:incident_subject) }
   let!(:report) do
     create(:report, incident_type_id: incident_type_other.id,
-    incident_severity_id: incident_severity.id)
+    incident_severity_id: incident_severity.id,
+    incident_subject_id: incident_subject.id)
   end
 
   path '/api/incident_types' do

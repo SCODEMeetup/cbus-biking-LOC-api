@@ -5,10 +5,12 @@ require 'swagger_helper'
 RSpec.describe '/api/reports_controller', type: :request do
   let!(:incident_type) { create(:incident_type) }
   let!(:incident_severity) { create(:incident_severity) }
+  let!(:incident_subject) { create(:incident_subject) }
 
   let!(:report) do
     create(:report, incident_type_id: incident_type.id,
-    incident_severity_id: incident_severity.id)
+    incident_severity_id: incident_severity.id,
+    incident_subject_id: incident_subject.id)
   end
 
   path '/api/reports' do
@@ -23,9 +25,11 @@ RSpec.describe '/api/reports_controller', type: :request do
           long: { type: :number, format: 'float', minimum: '-180.0',
                   maximum: '180.0' },
           incident_datetime: { type: :string, format: 'date-time' },
+          incident_year: { type: :integer, minimum: 1, maximum: 4 },
           incident_text: { type: :string, maximum: 64_000 },
           incident_type_id: { type: :integer, minimum: 1, maximum: 4 },
-          incident_severity_id: { type: :integer, minimum: 1, maximum: 5 }
+          incident_severity_id: { type: :integer, minimum: 1, maximum: 4 },
+          incident_subject_id: { type: :integer, minimum: 1, maximum: 4 }
         },
         required: %w[lat long incident_datetime incident_type_id
                      incident_severity_id]
@@ -34,8 +38,10 @@ RSpec.describe '/api/reports_controller', type: :request do
       response(201, 'report created') do
         let(:report) do
           { lat: 39.8846, long: -82.9192, incident_datetime: '2020-09-23',
-          incident_text: 'scary ride', incident_type_id: incident_type.id,
-          incident_severity_id: incident_severity.id }
+            incident_year: 2022, incident_text: 'scary ride',
+            incident_type_id: incident_type.id,
+            incident_severity_id: incident_severity.id,
+            incident_subject_id: incident_subject.id }
         end
 
         after do |example|
@@ -75,8 +81,19 @@ RSpec.describe '/api/reports_controller', type: :request do
 
     get('list reports') do
       tags 'Reports'
-
+      parameter name: 'incident_subject_id', in: :query, type: :string,
+                description: 'The subject of the incident, e.g., 1=bicycle'
+      parameter name: 'incident_type_id', in: :query, type: :string,
+                description: 'The type of the incident, e.g., 2=crash'
+      parameter name: 'incident_severity_id', in: :query, type: :string,
+                description: 'The severity of the incident, e.g., 5=fatal'
+      parameter name: 'incident_year', in: :query, type: :string,
+                description: 'The year of the incident, e.g., 2022'
       response(200, 'successful') do
+        let(:incident_subject_id) { incident_subject.id }
+        let(:incident_severity_id) { incident_severity.id }
+        let(:incident_type_id) { incident_type.id }
+        let(:incident_year) { report.incident_year }
         after do |example|
           example.metadata[:response][:examples] =
             { 'application/json' => JSON.parse(response.body,

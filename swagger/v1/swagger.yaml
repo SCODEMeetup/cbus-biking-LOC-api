@@ -84,6 +84,86 @@ paths:
                   type: string
               required:
               - description
+  "/api/incident_subjects":
+    post:
+      summary: create incident_subject
+      tags:
+      - Incident Subjects
+      parameters: []
+      responses:
+        '201':
+          description: incident subject created
+        '422':
+          description: unprocessable entity
+        '400':
+          description: bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+              required:
+              - description
+    get:
+      summary: list incident subjects
+      tags:
+      - Incident Subjects
+      responses:
+        '200':
+          description: successful
+  "/api/incident_subjects/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show incident subject
+      tags:
+      - Incident Subjects
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: not found
+    delete:
+      summary: delete incident subject
+      tags:
+      - Incident Subjects
+      responses:
+        '204':
+          description: no content
+        '404':
+          description: not found
+        '409':
+          description: conflict
+    put:
+      summary: update incident_subject
+      tags:
+      - Incident Subjects
+      parameters: []
+      responses:
+        '204':
+          description: successful
+        '422':
+          description: unprocessable entity
+        '400':
+          description: bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+              required:
+              - description
   "/api/incident_types":
     post:
       summary: create incident_type
@@ -196,6 +276,10 @@ paths:
                 incident_datetime:
                   type: string
                   format: date-time
+                incident_year:
+                  type: integer
+                  minimum: 1
+                  maximum: 4
                 incident_text:
                   type: string
                   maximum: 64000
@@ -206,7 +290,11 @@ paths:
                 incident_severity_id:
                   type: integer
                   minimum: 1
-                  maximum: 5
+                  maximum: 4
+                incident_subject_id:
+                  type: integer
+                  minimum: 1
+                  maximum: 4
               required:
               - lat
               - long
@@ -217,6 +305,27 @@ paths:
       summary: list reports
       tags:
       - Reports
+      parameters:
+      - name: incident_subject_id
+        in: query
+        description: The subject of the incident, e.g., 1=bicycle
+        schema:
+          type: string
+      - name: incident_type_id
+        in: query
+        description: The type of the incident, e.g., 2=crash
+        schema:
+          type: string
+      - name: incident_severity_id
+        in: query
+        description: The severity of the incident, e.g., 5=fatal
+        schema:
+          type: string
+      - name: incident_year
+        in: query
+        description: The year of the incident, e.g., 2022
+        schema:
+          type: string
       responses:
         '200':
           description: successful
@@ -247,7 +356,7 @@ paths:
         '404':
           description: not found
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: ride-aware.herokuapp.com
+      default: localhost:4000

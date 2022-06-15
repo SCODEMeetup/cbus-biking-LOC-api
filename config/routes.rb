@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :reports, only: %i[index show create destroy]
     resources :incident_types, only: %i[index show create destroy update]
     resources :incident_severities
+    resources :incident_subjects
   end
   root 'welcome#index'
 end

@@ -1,6 +1,6 @@
 # Cbus Biking Locations API
 
-API that exposes reports from cyclists including location and incident information.
+API that exposes reports from cyclists and pedestrians including location and incident information.
 
 Built and deployed using the Ruby on Rails framework.
 
@@ -115,10 +115,11 @@ The generated documentation (Swagger UI) is available at http://localhost:4000/a
       "incident_text": "loreem ipsum ...",
       "incident_type_id": "1",
       "incident_severity_id": "2"
+      "incident_subject_id": "1"
    }
 </pre>
 
-required params(lat:float, long:float, incident_datetime:string, incident_type_id:int, incident_severity_id:int)
+required params(lat:float, long:float, incident_datetime:string, incident_type_id:int, incident_severity_id:int, incident_subject_id:int)
 
 Status codes: 
 
@@ -136,13 +137,22 @@ A 422 will include one or more validation error messages in the response body.  
 
 Notes:
 
-incident_type_id and incident_severity_id are foreign keys to the incident_types and incident_severity table rows, respectively.
+incident_type_id, incident_severity_id, and incident_subject_id are foreign keys to the incident_types and incident_severity table rows, respectively.
 
 incident_datetime is an iso 8601 datetime string that is stored in UTC (indicated by the trailing Z)in the database.  If the incident_datetime indicates another timezone, e.g., "2020-09-19T21:44:42.-04:00" (ET DST), it will be converted to UTC by the server to "2020-09-20T01:44:42.000Z". 
 
 The minimum form of a valid iso 8601 datetime is YYYY-MM-DD which fills in hours, minutes and seconds with zeros on the server, e.g, 2020-10-01T00:00:00.000Z.
 
 https://en.wikipedia.org/wiki/ISO_8601
+
+incident_year is indexed to allow efficiently searching by year.
+
+incident_subject_id refers to the subject of the incident
+
+<pre>
+1 = bicycle
+2 = pedestrian
+</pre>
 
 
 2. GET a report by ID
@@ -167,6 +177,10 @@ https://en.wikipedia.org/wiki/ISO_8601
          "id": 2,
          "description": "Possible Injury"
       }
+      "incident_subject": {
+         "id": 1,
+         "description": "Bicycle"
+      }
    }
 </pre>
 
@@ -186,7 +200,7 @@ Status Codes:
 
 <pre>200 OK</pre>
 
-a response of [] indicates and empty list.
+a response of [] indicates an empty list.
 
 4. DELETE a report
   

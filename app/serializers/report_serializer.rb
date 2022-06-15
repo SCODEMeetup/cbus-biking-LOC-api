@@ -6,4 +6,5 @@ class ReportSerializer < ActiveModel::Serializer
 
   has_one :incident_type
   has_one :incident_severity
+  has_one :incident_subject
 end

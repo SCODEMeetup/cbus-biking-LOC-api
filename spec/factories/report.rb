@@ -6,5 +6,6 @@ FactoryBot.define do
     long { Faker::Address.longitude }
     incident_datetime { Time.now.utc.iso8601 }
     incident_text { Faker::Lorem.paragraph }
+    incident_year { 2022 }
   end
 end

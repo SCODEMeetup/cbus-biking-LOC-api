@@ -10,37 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_212925) do
+ActiveRecord::Schema.define(version: 2022_06_14_203351) do
 
-  #create_table "incident_severities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "incident_severities", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  #create_table "incident_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "incident_subjects", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "incident_types", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  #create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
   create_table "reports", force: :cascade do |t|
-
     t.float "lat"
     t.float "long"
     t.datetime "incident_datetime"
+    t.integer "incident_year"
     t.text "incident_text"
-    t.bigint "incident_type_id", null: false
+    t.integer "incident_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "incident_severity_id"
+    t.integer "incident_severity_id"
+    t.integer "incident_subject_id"
     t.index ["incident_severity_id"], name: "index_reports_on_incident_severity_id"
+    t.index ["incident_subject_id"], name: "index_reports_on_incident_subject_id"
     t.index ["incident_type_id"], name: "index_reports_on_incident_type_id"
+    t.index ["incident_year"], name: "index_reports_on_incident_year"
   end
 
   add_foreign_key "reports", "incident_severities"
+  add_foreign_key "reports", "incident_subjects"
   add_foreign_key "reports", "incident_types"
 end
