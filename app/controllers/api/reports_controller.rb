@@ -11,8 +11,7 @@ module Api
     # GET reports/:id
     def show
       # render json: @report
-      render json:
-        ActiveModelSerializers::SerializableResource.new(@report).as_json
+      render json: @report, serializer: DetailedReportSerializer
     end
 
     def index
@@ -32,7 +31,7 @@ module Api
       if @reports.blank?
         render json: {}
       else
-        render json: serialized_reports
+        render json: @reports
       end
     end
 
