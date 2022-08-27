@@ -137,7 +137,7 @@ A 422 will include one or more validation error messages in the response body.  
 
 Notes:
 
-incident_type_id, incident_severity_id, and incident_subject_id are foreign keys to the incident_types and incident_severity table rows, respectively.
+incident_type_id, incident_severity_id, and incident_subject_id are foreign keys to the incident_types and incident_severity table rows, respectively and are valid search parameters to the API.
 
 incident_datetime is an iso 8601 datetime string that is stored in UTC (indicated by the trailing Z)in the database.  If the incident_datetime indicates another timezone, e.g., "2020-09-19T21:44:42.-04:00" (ET DST), it will be converted to UTC by the server to "2020-09-20T01:44:42.000Z". 
 
@@ -147,11 +147,12 @@ https://en.wikipedia.org/wiki/ISO_8601
 
 incident_year is indexed to allow efficiently searching by year.
 
-incident_subject_id refers to the subject of the incident
+incident_subject_id is indexed to allow searching by the subject of the incident
 
 <pre>
 1 = bicycle
 2 = pedestrian
+3 = wheelchair
 </pre>
 
 

@@ -27,6 +27,7 @@ RSpec.describe '/api/reports_controller', type: :request do
           incident_datetime: { type: :string, format: 'date-time' },
           incident_year: { type: :integer, minimum: 1, maximum: 4 },
           incident_text: { type: :string, maximum: 64_000 },
+          narrative: { type: :string, maximum: 64_000 },
           incident_type_id: { type: :integer, minimum: 1, maximum: 4 },
           incident_severity_id: { type: :integer, minimum: 1, maximum: 4 },
           incident_subject_id: { type: :integer, minimum: 1, maximum: 4 }
@@ -39,6 +40,7 @@ RSpec.describe '/api/reports_controller', type: :request do
         let(:report) do
           { lat: 39.8846, long: -82.9192, incident_datetime: '2020-09-23',
             incident_year: 2022, incident_text: 'scary ride',
+            narrative: 'Unit 1 turned left',
             incident_type_id: incident_type.id,
             incident_severity_id: incident_severity.id,
             incident_subject_id: incident_subject.id }
@@ -49,7 +51,11 @@ RSpec.describe '/api/reports_controller', type: :request do
             { 'application/json' => JSON.parse(response.body,
                                                symbolize_names: true) }
         end
-        run_test!
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['narrative']).to_not be_nil
+        end
       end
 
       response(422, 'unprocessable entity') do
@@ -82,7 +88,8 @@ RSpec.describe '/api/reports_controller', type: :request do
     get('list reports') do
       tags 'Reports'
       parameter name: 'incident_subject_id', in: :query, type: :string,
-                description: 'The subject of the incident, e.g., 1=bicycle'
+                description: 'The subject of the incident, e.g., 1=bicycle,
+                              2=pedestrian, 3=wheelchair'
       parameter name: 'incident_type_id', in: :query, type: :string,
                 description: 'The type of the incident, e.g., 2=crash'
       parameter name: 'incident_severity_id', in: :query, type: :string,
@@ -99,7 +106,11 @@ RSpec.describe '/api/reports_controller', type: :request do
             { 'application/json' => JSON.parse(response.body,
                                                symbolize_names: true) }
         end
-        run_test!
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data.detect { |e| e['narrative'] }).to eq nil
+        end
       end
     end
   end
@@ -117,7 +128,11 @@ RSpec.describe '/api/reports_controller', type: :request do
             { 'application/json' => JSON.parse(response.body,
                                                symbolize_names: true) }
         end
-        run_test!
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['narrative']).to_not be_empty
+        end
       end
 
       response(404, 'not found') do

@@ -283,6 +283,9 @@ paths:
                 incident_text:
                   type: string
                   maximum: 64000
+                narrative:
+                  type: string
+                  maximum: 64000
                 incident_type_id:
                   type: integer
                   minimum: 1
@@ -308,7 +311,9 @@ paths:
       parameters:
       - name: incident_subject_id
         in: query
-        description: The subject of the incident, e.g., 1=bicycle
+        description: |-
+          The subject of the incident, e.g., 1=bicycle,
+                                        2=pedestrian, 3=wheelchair
         schema:
           type: string
       - name: incident_type_id
@@ -356,7 +361,7 @@ paths:
         '404':
           description: not found
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: ride-aware.herokuapp.com
+      default: localhost:4000

@@ -7,5 +7,6 @@ FactoryBot.define do
     incident_datetime { Time.now.utc.iso8601 }
     incident_text { Faker::Lorem.paragraph }
     incident_year { 2022 }
+    narrative { Faker::Lorem.paragraph }
   end
 end

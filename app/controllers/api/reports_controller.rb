@@ -40,7 +40,8 @@ module Api
       @report = Report.new(report_params)
       if @report.save
         render json: @report, status: :created,
-               location: api_report_url(@report)
+               location: api_report_url(@report),
+               serializer: DetailedReportSerializer
       else
         render json: @report.errors, status: :unprocessable_entity
       end
@@ -85,7 +86,7 @@ module Api
       params.require(:report)
             .permit(:lat, :long, :incident_type_id, :incident_severity_id,
                     :incident_year, :incident_datetime, :incident_text,
-                    :incident_subject_id)
+                    :incident_subject_id, :narrative)
             # defaults added for backward compatibility for bike_safety web-ui
             .with_defaults(incident_year: '2022', incident_subject_id: '1')
     end
